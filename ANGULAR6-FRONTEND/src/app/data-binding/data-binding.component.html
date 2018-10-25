@@ -1,0 +1,51 @@
+<div class="container">
+  <hr>
+  <h3 class="title" id="angularEvent">Angular Data binding and Event binding.</h3>
+  <div class="field">
+    <label for="CustomerName" class="label">ชื่อ - นามสกุล: </label>
+    <div class="control">
+      <input type="text" class="input" [(ngModel)]="CustomerName" id="CustomerName">
+    </div>
+    <p class="help is-success" *ngIf="CustomerName"> สวัสดี :: {{CustomerName}}</p>
+  </div>
+  <!-- ./field -->
+
+
+  <div class="field has-addons">
+    <div class="control">
+      <input type="text" class="input" #txt (keyup.enter)="changeText(txt)">
+    </div>
+    <div class="control">
+      <button type="button" class="button is-info" (click)="clickMe(txt)">Click Me !</button>
+    </div>
+  </div>
+  <!-- ./field -->
+
+
+  <!-- Angular data binding , One way , Two way data binding -->
+  <hr>
+  <h3 class="title" id="dataBinding">Angular data binding , One way , Two way data binding</h3>
+  <div class="field">
+    <label for="oneWayType1" class="label">One way data binding 1.</label><br />
+    <div class="control">
+      <input class="input" type="text" value="{{dataBinding}}"><br />
+    </div>
+  </div>
+  <!-- ./field -->
+
+  <div class="field">
+    <label class="label" for="oneWayType2">One way data binding 2.</label><br />
+    <div class="control">
+      <input class="input" type="text" [value]="dataBinding"><br />
+    </div>
+  </div>
+  <!-- ./field -->
+
+  <div class="field">
+    <label class="label" for="twoWayDatabinding">Two way data binding.</label><br />
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="dataBinding"><br />
+    </div>
+  </div>
+  <!-- ./field -->
+</div>
