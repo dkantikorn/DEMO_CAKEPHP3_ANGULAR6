@@ -14,13 +14,16 @@
   </h3>
   <br><br>
 
-  <h3 *ngIf="formSubmitted" class="tag is-info is-medium">
-    <span class="icon">
-      <i class="fa fa-info"></i>
-    </span>
-    <span>Form submitted successfully.</span>
-  </h3>
-  <br /><br />
+  <div *ngIf="formSubmitted">
+    <h3 class="tag is-info is-medium">
+      <span class="icon">
+        <i class="fa fa-info"></i>
+      </span>
+      <span>Form submitted successfully.</span>
+    </h3>
+    <br><br>
+  </div>
+
 
   <h4 *ngIf="apiResponse && apiResponse.response.status=='failed'" class="notification is-danger is-medium">{{apiResponse.response.message}}</h4>
   <h4 *ngIf="apiResponse && apiResponse.response.status=='success'" class="notification is-success is-medium">{{apiResponse.response.message}}</h4>
@@ -43,7 +46,7 @@
     </div>
 
     <div class="field">
-        <label class="label">เพศ : </label>
+      <label class="label">เพศ : </label>
       <div class="control">
         <label class="radio">
           <input type="radio" name="gender" [(ngModel)]="user.gender" formControlName="gender" value="M">

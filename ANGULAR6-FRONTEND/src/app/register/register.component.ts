@@ -1,5 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-
+import { Component, OnInit, ElementRef, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from './../_services/users.service';
@@ -7,12 +6,34 @@ import { Location } from '@angular/common';
 
 //Date picker Options set option to the datepicker
 import { IMyDpOptions } from 'mydatepicker';
+
+import { ToastrManager } from 'ng6-toastr-notifications';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+
+  //DatePicker Options
+  private myDatePickerOptions: IMyDpOptions = {
+    dateFormat: 'yyyy-mm-dd'
+  };
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private elm: ElementRef,
+    private userService: UsersService,
+    public toastr: ToastrManager
+  ) { }
+
+  ngOnInit() {
+
+  }
+
   formSubmitted: boolean = false;
   apiResponse: any;
   updateStatus: boolean = false;
@@ -43,22 +64,6 @@ export class RegisterComponent implements OnInit {
   });
 
 
-  //DatePicker Options
-  private myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd'
-  };
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private location: Location,
-    private elm: ElementRef,
-    private userService: UsersService
-  ) { }
-
-  ngOnInit() {
-  }
-
   /**
    * 
    * Function add for new user to the system function do when form valid and you press submit the button
@@ -87,6 +92,7 @@ export class RegisterComponent implements OnInit {
         console.log('OK SAVE SUCCESS');
         console.log(success);
         this.apiResponse = success;
+        this.toastr.successToastr(this.apiResponse.response.message, 'Success!', { showCloseButton: true });
       },
       error => console.log(error),
       () => console.log('COMPLETE API')
@@ -160,5 +166,29 @@ export class RegisterComponent implements OnInit {
    */
   onChange(files?: FileList) {
     console.log(files);
+  }
+
+  showSuccess() {
+    this.toastr.successToastr('This is success toast.', 'Success!');
+  }
+
+  showError() {
+    this.toastr.errorToastr('This is error toast.', 'Oops!');
+  }
+
+  showWarning() {
+    this.toastr.warningToastr('This is warning toast.', 'Alert!');
+  }
+
+  showInfo() {
+    this.toastr.infoToastr('This is info toast.', 'Info');
+  }
+
+  showCustom() {
+    this.toastr.customToastr('Custom Toast', null, { enableHTML: true });
+  }
+
+  showToast(position: any = 'top-left') {
+    this.toastr.infoToastr('This is a toast.', 'Toast', { position: position });
   }
 }

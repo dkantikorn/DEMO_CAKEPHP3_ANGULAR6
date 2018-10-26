@@ -3,7 +3,6 @@ import { HttpClient, HttpRequest, HttpErrorResponse, HttpResponse, HttpParams, H
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 import { environment } from './../../environments/environment';
-// import 'rxjs/operators/map';
 
 @Injectable({
   providedIn: 'root'
@@ -22,20 +21,15 @@ export class UsersService {
     return this.http.get(`${environment.apiURL}/users/findUserByUserId/${id}.json`);
   }
 
-
-
-
   /**
    * 
-   * Function update for user profile
+   * Function add / register for user profile
    * @author sarawutt.b
    * @param user as a object of user information
    */
   addUserProfile(user: any) {
     return this.http.post(`${environment.apiURL}/users/addUserProfile.json`, user);
   }
-
-
 
   /**
    * 
