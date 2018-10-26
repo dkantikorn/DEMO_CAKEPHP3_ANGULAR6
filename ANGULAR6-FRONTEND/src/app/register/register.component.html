@@ -1,0 +1,147 @@
+<div class="container">
+  <h3 class="notification is-success">
+    <span class="icon">
+      <i class="fa fa-user-plus"></i>
+    </span>
+    <span>Add new user / Member</span>
+  </h3>
+
+  <h3 class="tag is-primary is-large">
+    <span class="icon">
+      <i class="fa fa-info"></i>
+    </span>
+    <span>User information</span>
+  </h3>
+  <br><br>
+
+  <h3 *ngIf="formSubmitted" class="tag is-info is-medium">
+    <span class="icon">
+      <i class="fa fa-info"></i>
+    </span>
+    <span>Form submitted successfully.</span>
+  </h3>
+  <br /><br />
+
+  <h4 *ngIf="apiResponse && apiResponse.response.status=='failed'" class="notification is-danger is-medium">{{apiResponse.response.message}}</h4>
+  <h4 *ngIf="apiResponse && apiResponse.response.status=='success'" class="notification is-success is-medium">{{apiResponse.response.message}}</h4>
+
+  <form [formGroup]="UserForm" (ngSubmit)="addUserProfile()">
+    <div class="field">
+      <label class="label">ชื่อผู้เข้าใช้งาน : </label>
+      <div class="control">
+        <input type="text" class="input" [(ngModel)]="user.username" formControlName="username" />
+      </div>
+      <p *ngIf="UserForm.get('username').invalid" [ngClass]="'help is-danger'">Username is required.</p>
+    </div>
+
+    <div class="field">
+      <label class="label">รหัสผ่าน : </label>
+      <div class="control">
+        <input type="password" class="input" [(ngModel)]="user.password" formControlName="password">
+      </div>
+      <p *ngIf="UserForm.get('password').invalid" [ngClass]="'help is-danger'">Password is required and min lenght 8</p>
+    </div>
+
+    <div class="field">
+        <label class="label">เพศ : </label>
+      <div class="control">
+        <label class="radio">
+          <input type="radio" name="gender" [(ngModel)]="user.gender" formControlName="gender" value="M">
+          ชาย
+        </label>
+        <label class="radio">
+          <input type="radio" name="gender" [(ngModel)]="user.gender" formControlName="gender" value="F">
+          หญิง
+        </label>
+      </div>
+      <p *ngIf="UserForm.get('gender').invalid" [ngClass]="'help is-danger'">Gender is required.</p>
+    </div>
+
+    <div class="field">
+      <label class="label">ชื่อตัว : </label>
+      <div class="control">
+        <input type="text" class="input" [(ngModel)]="user.first_name" formControlName="first_name" />
+      </div>
+      <p *ngIf="UserForm.get('first_name').invalid" [ngClass]="'help is-danger'">First name is required.</p>
+    </div>
+
+    <div class="field">
+      <label class="label">นามสกุล : </label>
+      <div class="control">
+        <input type="text" class="input" [(ngModel)]="user.last_name" formControlName="last_name" />
+      </div>
+      <p *ngIf="UserForm.get('last_name').invalid" [ngClass]="'help is-danger'">Last name is required.</p>
+    </div>
+
+    <div class="field">
+      <label class="label">อีเมล์ : </label>
+      <div class="control">
+        <input type="text" class="input" [(ngModel)]="user.email" formControlName="email" />
+      </div>
+      <p *ngIf="UserForm.get('email').invalid" [ngClass]="'help is-danger'">Email is required.</p>
+    </div>
+
+    <div class="field">
+      <label class="label">วันเกิด : </label>
+      <div class="control">
+        <my-date-picker name="birth_date" [options]="myDatePickerOptions" formControlName="birth_date"></my-date-picker>
+      </div>
+      <p *ngIf="UserForm.get('birth_date').invalid" [ngClass]="'help is-danger'">Birth date is required.</p>
+    </div>
+
+
+    <div class="field">
+      <label class="label">เบอร์โทร : </label>
+      <div class="control">
+        <input type="text" class="input" [(ngModel)]="user.phone" formControlName="phone" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">มือถือ : </label>
+      <div class="control">
+        <input type="text" class="input" [(ngModel)]="user.mobile" formControlName="mobile" />
+      </div>
+      <p *ngIf="UserForm.get('mobile').invalid" [ngClass]="'help is-danger'">Mobile is required.</p>
+    </div>
+
+    <div class="field">
+      <div class="file is-info has-name">
+        <label class="file-label">
+          <input class="file-input" type="file" id="UserPictureProfile" [(ngModel)]="user.picture_path" (change)="onFileChange($event)"
+            formControlName="picture_path" accept=".pdf,.jpg,.jpeg,.gif,.doc,.docx" />
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file...
+            </span>
+          </span>
+          <span class="file-name">
+            <p *ngIf="!(fileName)">Profile picture....</p>
+            <p *ngIf="fileName">{{fileName}}</p>
+          </span>
+        </label>
+      </div>
+      <p *ngIf="UserForm.get('picture_path').invalid" [ngClass]="'help is-danger'">Profile Picture is required.</p>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-primary" type="submit" [disabled]="UserForm.invalid">
+          <span class="icon">
+            <i class="fa fa-pencil-alt"> </i>
+          </span>
+          <span>บันทึก</span>
+        </button>
+        <button class="button is-light" type="button" (click)="goBack()">
+          <span class="icon">
+            <i class="fa fa-arrow-left"> </i>
+          </span>
+          <span>ย้อนกลับ</span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
