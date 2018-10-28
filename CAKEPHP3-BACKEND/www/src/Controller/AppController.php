@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -29,8 +31,7 @@ header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIO
  *
  * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller
-{
+class AppController extends Controller {
 
     /**
      * Initialization hook method.
@@ -41,12 +42,24 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function initialize()
-    {
+    public function initialize() {
         parent::initialize();
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+
+        $this->loadComponent('Auth', [
+            'loginRedirect' => ['controller' => 'Home', 'action' => 'index'],
+            'logoutRedirect' => ['controller' => 'Users', 'action' => 'login'],
+            'loginAction' => ['controller' => 'Users', 'action' => 'login'],
+            'authorize' => ['Controller'],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'username', 'password' => 'password'],
+                ]
+            ],
+            'unauthorizedRedirect' => $this->referer()// If unauthorized, return them to page they were just on
+        ]);
 
         /*
          * Enable the following components for recommended CakePHP security settings.
@@ -55,8 +68,7 @@ class AppController extends Controller
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
     }
-    
-    
+
     /**
      *
      * Function used fro generate _VERSION_
@@ -78,7 +90,7 @@ class AppController extends Controller
     public function UUID() {
         return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x', mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0x0fff) | 0x4000, mt_rand(0, 0x3fff) | 0x8000, mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff));
     }
-    
+
     /**
      *
      * This function for uload attachment excel file  from view of information style list
@@ -163,4 +175,5 @@ class AppController extends Controller
         }
         return $result;
     }
+
 }

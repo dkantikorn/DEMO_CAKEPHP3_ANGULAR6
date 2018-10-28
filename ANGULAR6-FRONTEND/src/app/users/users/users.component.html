@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="notification is-warning title is-3">
+    User management
+  </div>
+  <div class="tag is-danger is-large sub-title is-5">User List : {{userList?.length}}</div>
+  <br><br>
+
+  <div class="columns">
+    <div class="column">
+      <form #userForm="ngForm" (ngSubmit)="searchUser()">
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <div class="control">
+              <input type="text" class="input" name="searchTxt" [(ngModel)]="searchTxt" #name="ngModel">
+            </div>
+          </div>
+          <div class="control">
+            <button type="submit" class="button is-info" [disabled]="userForm.form.invalid">
+              <span class="icon">
+                <i class="fa fa-search"></i>
+              </span>
+              <span>ค้นหา</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="columns">
+    <div class="column">
+      <div class="field">
+        <div class="control">
+          <button class="button is-primary is-large" (click)="addUserProfile()">
+            <span class="icon">
+              <i class="fa fa-plus"></i>
+            </span>
+            <span>
+              Add
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns is-multiline">
+    <div class="column is-one-quarter" *ngFor="let user of userList | userFilter: searchTxt | paginate: {itemsPerPage: 10, currentPage: p};">
+      <div class="card">
+        <div class="card-image">
+          <figure class="image is-4by3">
+            <img src="http://demo.cakephp-angular.local:7200/{{user.picture_path}}" alt="Icon">
+          </figure>
+        </div>
+        <div class="card-content">
+          <div class="media">
+            <div class="media-content">
+              <p class="title is-4">
+                <a [routerLink]="['detail',user.id]" class="is-success">{{user.username}}</a>
+              </p>
+
+              <p class="subtitle is-6">{{user.first_name}} {{user.last_name}}
+                <a [routerLink]="['edit',user.id]" class="tag is-warning">Edit</a>
+                <a (click)="deleteUserProfile(user)" class="tag is-danger">Delete</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="columns">
+    <div class="column">
+      <!-- Pagination Page -->
+      <pagination-controls class="pagination is-right" role="navigation" aria-label="pagination" (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+
+</div>

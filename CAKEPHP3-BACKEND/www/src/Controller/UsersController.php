@@ -13,6 +13,11 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController {
 
+    public function initialize() {
+        parent::initialize();
+        $this->Auth->allow();
+    }
+
     public function index() {
         $this->redirect(array('action' => 'loadAllUsers'));
     }
@@ -29,40 +34,19 @@ class UsersController extends AppController {
      * @return  void
      */
     public function login() {
-        $rest = array(
-            'status' => 'INFO',
-            'data' => array(
-                'message' => __('Login::API'),
-                'raw' => array()
-            )
-        );
+        $response = [];
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                if ($this->Session->check('Auth.User')) {
-                    $data['User']['id'] = $this->getCurrenSessionUserId();
-                    $data['User']['last_login'] = date('Y-m-d H:i:s');
-                    $this->User->save($data);
-                }
-
-                $rest = array(
-                    'status' => 'SUCCESS',
-                    'data' => array(
-                        'message' => __('Login successfully'),
-                        'raw' => $this->Auth->user()
-                    ),
-                    'tocken' => 'jwt-token'
-                );
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                $response = ['status' => 'success', 'message' => __('Login successfully'), 'data' => $this->Auth->user(), 'token' => 'jwt-token'];
             } else {
-                $rest = array(
-                    'status' => 'ERROR',
-                    'data' => array(
-                        'message' => __('Username or password is incorrect. Please, try again.'),
-                        'raw' => array()
-                    )
-                );
+                $response = ['status' => 'failed', 'message' => __('Invalid username or password Please try again!')];
             }
         }
-        $this->set(array('data' => $rest, '_serialize' => array('data')));
+
+        $this->set(compact('response'));
+        $this->set('_serialize', ['response']);
     }
 
     /**
@@ -84,12 +68,12 @@ class UsersController extends AppController {
 
     /**
      * 
-     * Function list all user on the sytem
+     * Function list all user on the system
      * @author sarawutt.b
      */
     public function loadAllUsers() {
-        $users = $this->Users->find()->order('username ASC, first_name ASC, last_name ASC')->all();
-        $this->set(['users' => $users, '_serialize' => ['users']]);
+        $response = $this->Users->find()->order(['username' => 'asc', 'first_name' => 'asc', 'last_name' => 'asc'])->all();
+        $this->set(['response' => $response, '_serialize' => ['response']]);
     }
 
     /**

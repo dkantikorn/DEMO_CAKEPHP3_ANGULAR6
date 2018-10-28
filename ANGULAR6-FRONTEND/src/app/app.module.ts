@@ -13,6 +13,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyDatePickerModule } from 'mydatepicker';
 
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { UsersComponent } from './users/users/users.component';
+import { UserFilterPipe } from './users/pipe/user-filter.pipe';
+
+
+//Pagination Plugin Module
+import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,10 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     DataBindingComponent,
     NavBarComponent,
     HomeComponent,
-    RegisterComponent
+    RegisterComponent,
+    UsersComponent,
+    UserFilterPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +40,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     ReactiveFormsModule,
     MyDatePickerModule,
     HttpClientModule,
+    NgxPaginationModule,
     ToastrModule.forRoot()
   ],
   providers: [],
