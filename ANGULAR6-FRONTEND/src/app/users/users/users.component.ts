@@ -32,13 +32,13 @@ export class UsersComponent implements OnInit {
 
   //Function load a user infomation whare match parameter id
   //Function for view page
-  findUserByUserId(params = null) {
-    this._userService.findUserByUserId(params).subscribe(response => {
-      this.userInfo = response;
-    });
+  // findUserByUserId(params = null) {
+  //   this._userService.findUserByUserId(params).subscribe(response => {
+  //     this.userInfo = response;
+  //   });
 
-    this.router.navigate(['/user/view', params]);
-  }
+  //   this.router.navigate(['/user/view', params]);
+  // }
 
   // Version making link with routerLink="" directive
   //Function load a user infomation whare match parameter id

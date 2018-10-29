@@ -20,6 +20,7 @@ import { UserFilterPipe } from './users/pipe/user-filter.pipe';
 //Pagination Plugin Module
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './login/login.component';
+import { UsersDetailComponent } from './users/users-detail/users-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     RegisterComponent,
     UsersComponent,
     UserFilterPipe,
-    LoginComponent
+    LoginComponent,
+    UsersDetailComponent
   ],
   imports: [
     BrowserModule,

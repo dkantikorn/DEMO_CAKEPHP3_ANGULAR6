@@ -11,41 +11,6 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  // /**
-  //  * 
-  //  * Function Login make thing authentication
-  //  * @author  sarawutt.b
-  //  * @param username 
-  //  * @param password 
-  //  */
-  // login(username: string, password: string) {
-  //   let formData = new FormData();
-  //   formData.append('username', username);
-  //   formData.append('password', password);
-  //   return this.http.post(`${environment.apiURL}/users/login.json`, formData)
-  //     .pipe(map((response: Response) => {
-  //       //console.log(response);
-  //       // login successful if there's a jwt token in the response
-  //       let user = response.json();
-  //       console.log(user);
-  //       if (user && user.token) {
-  //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //       }
-  //       return response = response.json();
-  //     }));
-  // }
-
-  // /**
-  //  * 
-  //  * Function logout take a current user in the session logged out
-  //  * @author  satawutt.b
-  //  */
-  // logout() {
-  //   // remove user from local storage to log user out
-  //   localStorage.removeItem('currentUser');
-  // }
-
   /**
   * 
   * Function Login make thing authentication

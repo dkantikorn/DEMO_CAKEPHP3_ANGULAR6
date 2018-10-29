@@ -78,13 +78,20 @@ class UsersController extends AppController {
 
     /**
      * 
-     * Function load a user infomation whare match parameter id
+     * Function load a user information whare match parameter id
      * @author  sarawutt.b
      * @param   type $id as a integer of the user ID
      */
     public function findUserByUserId($id = null) {
-        $userInfo = $this->User->find('first', array('conditions' => array('User.' . $this->User->primaryKey => $id)));
-        $this->set(array('user' => $userInfo, '_serialize' => array('user')));
+        $response = [];
+        $userInfo = $this->Users->find()->where([$this->Users->primaryKey() => $id]);
+        if (!$userInfo->isEmpty()) {
+            $response = ['status' => 'success', 'message' => __('Load for user information'), 'data' => $userInfo->first()];
+        } else {
+            $response = ['status' => 'failed', 'message' => __('User information are not founded!'), 'data' => $userInfo->first()];
+        }
+        $this->set(compact('response'));
+        $this->set('_serialize', ['response']);
     }
 
     /**

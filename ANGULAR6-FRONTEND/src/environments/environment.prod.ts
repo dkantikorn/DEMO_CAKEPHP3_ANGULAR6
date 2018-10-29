@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiURL:'http://demo.cakephp-angular.local:7200'
 };

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="notification is-primary is-medium title is-4">User Detail</div>
+  <hr />
+
+  <figure class="image is-128x128">
+    <img src="{{APIServerURL}}{{user.response.data.picture_path}}" alt="Icon">
+  </figure>
+  <table class="table is-bordered is-striped is-narrow is-fullwidth" *ngIf="user">
+    <tr>
+      <th>Username</th>
+      <td>{{user.response.data.username}}</td>
+    </tr>
+    <tr>
+      <th>First name</th>
+      <td>{{user.response.data.first_name}}</td>
+    </tr>
+    <tr>
+      <th>Last Name</th>
+      <td>{{user.response.data.last_name}}</td>
+    </tr>
+  </table>
+
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary" (click)="goBack()">
+        Back
+      </button>
+    </div>
+  </div>
+</div>
