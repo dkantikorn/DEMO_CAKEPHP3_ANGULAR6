@@ -1,6 +1,8 @@
+import { ToastrManager } from 'ng6-toastr-notifications';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UsersService } from '../../_services/users.service';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'app-users',
@@ -13,13 +15,18 @@ export class UsersComponent implements OnInit {
   userInfo: any = [];
   searchTxt: string;
 
-  constructor(private _route: ActivatedRoute, private _userService: UsersService, private router: Router) { }
+  constructor(
+    private _route: ActivatedRoute,
+    private _userService: UsersService,
+    private router: Router,
+    private toastr: ToastrManager
+  ) { }
 
   ngOnInit() {
     this.loadAllUsers();
   }
 
-  searchUser(){
+  searchUser() {
     return true;
   }
   //Function load all user are in the api application
@@ -68,20 +75,22 @@ export class UsersComponent implements OnInit {
    * @author  sarawutt.b
    */
   deleteUserProfile(user) {
+    let response: any;
     if (confirm('Are you sure for delete the user of name ' + user.first_name + ' ' + user.last_name + ' ?')) {
       var index = this.userList.indexOf(user);
-      this.userList.splice(index, 1);
       this._userService.deleteUserProfile(user.id).subscribe(
         success => {
           console.log(success);
-          // if (success.message.type == 'ERROR') {
-          //   alert('Could not be delete the user please try again!');
-          //   this.userList.splice(index, 0, { User: user });
-          // }
+          response = success;
+          if (response.response.status == 'failed') {
+            this.toastr.errorToastr(response.response.message, 'Oops!', { showCloseButton: true });
+          } else {
+            this.userList.splice(index, 1);
+            this.toastr.successToastr(response.response.message, 'Success!', { showCloseButton: true });
+          }
         },
         error => {
-          alert('Could not be delete the user please try again!');
-          this.userList.splice(index, 0, { User: user });
+          this.toastr.errorToastr('Could not be delete the user please try again!', 'Oops!', { showCloseButton: true });
           console.log(error)
         },
         () => console.log('COMPLETE API')

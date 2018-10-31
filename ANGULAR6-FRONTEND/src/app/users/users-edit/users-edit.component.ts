@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { map, switchMap } from 'rxjs/operators';
 import { UsersService } from '../../_services/users.service';
-import { environment } from './../../../environments/environment';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
