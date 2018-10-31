@@ -21,6 +21,7 @@ import { UserFilterPipe } from './users/pipe/user-filter.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './login/login.component';
 import { UsersDetailComponent } from './users/users-detail/users-detail.component';
+import { UsersEditComponent } from './users/users-edit/users-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UsersDetailComponent } from './users/users-detail/users-detail.componen
     UsersComponent,
     UserFilterPipe,
     LoginComponent,
-    UsersDetailComponent
+    UsersDetailComponent,
+    UsersEditComponent
   ],
   imports: [
     BrowserModule,

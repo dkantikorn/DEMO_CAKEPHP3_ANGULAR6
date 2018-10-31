@@ -44,7 +44,7 @@ class User extends Entity {
         'last_name' => true,
         'gender' => true,
         'birth_date' => true,
-        'moblie' => true,
+        'mobile' => true,
         'phone' => true,
         'email' => true,
         'picture_path' => true,

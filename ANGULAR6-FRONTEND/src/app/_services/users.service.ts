@@ -38,7 +38,7 @@ export class UsersService {
    * @param user as a object of user information
    */
   updateUserProfile(user: any) {
-    return this.http.put(`${environment.apiURL}/users/updateUserProfile/${user.id}.json`, JSON.stringify(user));
+    return this.http.put(`${environment.apiURL}/users/updateUserProfile/${user.id}.json`, user);
   }
 
   /**

@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { UsersComponent } from './users/users/users.component';
 import { LoginComponent } from './login/login.component';
 import { UsersDetailComponent } from './users/users-detail/users-detail.component';
+import { UsersEditComponent } from './users/users-edit/users-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuardGuard] },
   { path: 'users/detail/:user-id', component: UsersDetailComponent, canActivate: [AuthGuardGuard] },
+  { path: 'users/edit/:user-id', component: UsersEditComponent, canActivate: [AuthGuardGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
 ];

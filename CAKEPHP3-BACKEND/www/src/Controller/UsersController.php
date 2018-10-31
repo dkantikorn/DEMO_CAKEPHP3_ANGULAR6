@@ -121,6 +121,8 @@ class UsersController extends AppController {
                 $user = $this->Users->patchEntity($user, $params);
                 if ($this->Users->save($user)) {
                     $response = ['message' => __('The user has been saved.'), 'status' => 'success'];
+                } else {
+                    $response = ['message' => __('The username could not be save. Please try again.'), 'status' => 'failed'];
                 }
             } else {
                 $response = ['message' => __('The username %s is already exist. Please try again.', $params['username']), 'status' => 'failed'];
@@ -137,17 +139,37 @@ class UsersController extends AppController {
      * @param type $id as a integer of user id [PK]
      */
     public function updateUserProfile($id = null) {
-        $message = array('message' => __('METHOD:: PUT Request for update user profile'), 'type' => 'ERROR');
-        $user = json_decode(file_get_contents("php://input"), true);
-        if ($this->request->is('put') && !empty($user)) {
-            $this->User->id = $user['id'];
-            if ($this->User->save($user)) {
-                $message = array('message' => __('The user has been updated.'), 'type' => 'SUCCESS');
+//        $message = array('message' => __('METHOD:: PUT Request for update user profile'), 'type' => 'ERROR');
+//        $user = json_decode(file_get_contents("php://input"), true);
+//        if ($this->request->is('put') && !empty($user)) {
+//            $this->User->id = $user['id'];
+//            if ($this->User->save($user)) {
+//                $message = array('message' => __('The user has been updated.'), 'type' => 'SUCCESS');
+//            } else {
+//                $message = array('message' => __('The user could not be updated. Please try again !'), 'type' => 'ERROR');
+//            }
+//        }
+//        $this->set(array('data' => $message, '_serialize' => array('data')));
+        $response = ['message' => __('Initial for add a user profile'), 'status' => 'failed'];
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->get($id, ['contain' => []]);
+            if (!empty($user)) {
+                $params = $this->request->getData();
+                $params['create_uid'] = 999;
+                $user = $this->Users->patchEntity($user, $params);
+                if ($this->Users->save($user)) {
+                    $response = ['message' => __('The user has been saved.'), 'status' => 'success'];
+                } else {
+                    $response = ['message' => __('The user could not be save. Please try again.'), 'status' => 'failed'];
+                }
             } else {
-                $message = array('message' => __('The user could not be updated. Please try again !'), 'type' => 'ERROR');
+                $response = ['message' => __('The request user not found infomation. Please try again.'), 'status' => 'failed'];
             }
+        }else{
+            $response = ['message' => __('Not allow request Method you must request to update with POST/PUT/PATCH'), 'status' => 'failed'];
         }
-        $this->set(array('data' => $message, '_serialize' => array('data')));
+        $this->set(compact('response'));
+        $this->set('_serialize', ['response']);
     }
 
     /**

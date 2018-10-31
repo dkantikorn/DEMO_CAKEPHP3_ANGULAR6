@@ -1,0 +1,86 @@
+<div class="container">
+  <h3 class="notification is-primary">Update User profile / Member profile</h3>
+  <h3 class="tag is-danger is-large">User information</h3>
+  <br><br>
+  
+  <div *ngIf="formSubmitted">
+    <h3 class="tag is-info is-medium">
+      <span class="icon">
+        <i class="fa fa-info"></i>
+      </span>
+      <span>Form submitted successfully.</span>
+    </h3>
+    <br><br>
+  </div>
+
+  <h4 *ngIf="apiResponse && apiResponse.response.status=='failed'" class="notification is-danger is-medium">{{apiResponse.response.message}}</h4>
+  <h4 *ngIf="apiResponse && apiResponse.response.status=='success'" class="notification is-success is-medium">{{apiResponse.response.message}}</h4>
+  <br><br>
+  <form [formGroup]="UserForm" (ngSubmit)="onUpdateFormSubmit()">
+
+      <input type="hidden" [(ngModel)]="user.id" formControlName="id" />
+      <div class="field">
+          <label class="label">ชื่อผู้เข้าใช้งาน : </label>
+          <div class="control">
+              <input type="text" class="input" [(ngModel)]="user.username" formControlName="username" />
+          </div>
+          <p *ngIf="UserForm.get('username').invalid" [ngClass]="'help is-danger'">Username is required.</p>
+      </div>
+
+      <div class="field">
+          <label class="label">ชื่อตัว : </label>
+          <div class="control">
+              <input type="text" class="input" [(ngModel)]="user.first_name" formControlName="first_name" />
+          </div>
+          <p *ngIf="UserForm.get('first_name').invalid" [ngClass]="'help is-danger'">First name is required.</p>
+      </div>
+
+      <div class="field">
+          <label class="label">นามสกุล : </label>
+          <div class="control">
+              <input type="text" class="input" [(ngModel)]="user.last_name" formControlName="last_name" />
+          </div>
+          <p *ngIf="UserForm.get('last_name').invalid" [ngClass]="'help is-danger'">Last name is required.</p>
+      </div>
+
+      <div class="field">
+          <label class="label">อีเมล์ : </label>
+          <div class="control">
+              <input type="text" class="input" [(ngModel)]="user.email" formControlName="email" />
+          </div>
+      </div>
+
+      <div class="field">
+          <label class="label">เบอร์โทร : </label>
+          <div class="control">
+              <input type="text" class="input" [(ngModel)]="user.phone" formControlName="phone" />
+          </div>
+      </div>
+
+      <div class="field">
+          <label class="label">มือถือ : </label>
+          <div class="control">
+              <input type="text" class="input" [(ngModel)]="user.mobile" formControlName="mobile" />
+          </div>
+      </div>
+
+      <div class="field">
+          <div class="control">
+              <button class="button is-primary" type="submit" [disabled]="UserForm.invalid">
+                  <span class="icon">
+                  <i class="fa fa-pencil"> </i>
+                </span>
+                <span>บันทึก</span>
+              </button>
+              <button class="button is-light" type="button" (click)="goBack()">
+                  <span class="icon">
+                  <i class="fa fa-arrow-left"> </i>
+                </span>
+                <span>ย้อนกลับ</span>
+              </button>
+          </div>
+      </div>
+
+  </form>
+  <br><br>
+</div>

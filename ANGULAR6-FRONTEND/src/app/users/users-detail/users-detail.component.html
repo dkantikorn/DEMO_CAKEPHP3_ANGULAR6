@@ -2,7 +2,7 @@
   <div class="notification is-primary is-medium title is-4">User Detail</div>
   <hr />
 
-  <figure class="image is-128x128">
+  <figure class="image is-128x128" *ngIf="user">
     <img src="{{APIServerURL}}{{user.response.data.picture_path}}" alt="Icon">
   </figure>
   <table class="table is-bordered is-striped is-narrow is-fullwidth" *ngIf="user">
