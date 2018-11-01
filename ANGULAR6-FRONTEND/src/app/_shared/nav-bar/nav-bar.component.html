@@ -18,6 +18,10 @@
           Home
         </a>
 
+        <!-- <a class="navbar-item" routerLink="/home">
+          Login Observable:: {{isLoggedIn$ | async}}
+        </a> -->
+
         <a class="navbar-item">
           Documentation
         </a>
@@ -51,14 +55,24 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
+
+          <div class="buttons" *ngIf="isLoggedIn$ | async as isLoggedIn; else signupBlock">
+            <a [routerLink]="['/login']" routerLinkActive="active" class="button is-primary">
+              Logout
             </a>
           </div>
+
+          <!-- sign up block -->
+          <ng-template #signupBlock>
+            <div class="buttons">
+              <a class="button is-primary" routerLink="/register">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light" [routerLink]="['/login']" routerLinkActive="active">
+                Log in
+              </a>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>

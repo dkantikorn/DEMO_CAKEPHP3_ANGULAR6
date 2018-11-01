@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { LoginComponent } from './login/login.component';
 import { UsersDetailComponent } from './users/users-detail/users-detail.component';
 import { UsersEditComponent } from './users/users-edit/users-edit.component';
+import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { UsersEditComponent } from './users/users-edit/users-edit.component';
     UserFilterPipe,
     LoginComponent,
     UsersDetailComponent,
-    UsersEditComponent
+    UsersEditComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

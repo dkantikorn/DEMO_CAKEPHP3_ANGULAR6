@@ -8,6 +8,7 @@ import { UsersComponent } from './users/users/users.component';
 import { LoginComponent } from './login/login.component';
 import { UsersDetailComponent } from './users/users-detail/users-detail.component';
 import { UsersEditComponent } from './users/users-edit/users-edit.component';
+import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
   { path: 'users/detail/:user-id', component: UsersDetailComponent, canActivate: [AuthGuardGuard] },
   { path: 'users/edit/:user-id', component: UsersEditComponent, canActivate: [AuthGuardGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
