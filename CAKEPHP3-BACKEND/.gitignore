@@ -1,0 +1,7 @@
+www/vendor/
+www/tmp/
+www/node_modules/
+www/webroot/node_modules/
+nbproject/
+database/
+www/log/
