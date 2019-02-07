@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { UsersDetailComponent } from './users/users-detail/users-detail.component';
 import { UsersEditComponent } from './users/users-edit/users-edit.component';
 import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
+import { NgIfTemplateComponent } from './tutorials/ng-if-template/ng-if-template.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.c
     LoginComponent,
     UsersDetailComponent,
     UsersEditComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    NgIfTemplateComponent
   ],
   imports: [
     BrowserModule,
