@@ -1,0 +1,16 @@
+<br>
+<div class="container">
+  <h4 class="title is-4 notification is-info">
+    child-one works! count :: <span class="tag is-rounded">{{count}}</span>
+  </h4>
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary" (click)="onClickReset1()">Reset 1</button>
+      <button class="button is-link" (click)="onClickUpdateParant()">Update parent component</button>
+      <button class="button is-info" (click)="onClickUpdateService()">Update from service
+        &nbsp;&nbsp;<span class="tag is-rounded"> {{share.count}} </span>
+      </button>
+    </div>
+  </div>
+
+</div>

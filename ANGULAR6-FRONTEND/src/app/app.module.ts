@@ -24,6 +24,9 @@ import { UsersDetailComponent } from './users/users-detail/users-detail.componen
 import { UsersEditComponent } from './users/users-edit/users-edit.component';
 import { PageNotFoundComponent } from './_shared/page-not-found/page-not-found.component';
 import { NgIfTemplateComponent } from './tutorials/ng-if-template/ng-if-template.component';
+import { ParentsComponent } from './components/communications/parents/parents.component';
+import { ChildOneComponent } from './components/communications/child-one/child-one.component';
+import { ChildTwoComponent } from './components/communications/child-two/child-two.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { NgIfTemplateComponent } from './tutorials/ng-if-template/ng-if-template
     UsersDetailComponent,
     UsersEditComponent,
     PageNotFoundComponent,
-    NgIfTemplateComponent
+    NgIfTemplateComponent,
+    ParentsComponent,
+    ChildOneComponent,
+    ChildTwoComponent
   ],
   imports: [
     BrowserModule,

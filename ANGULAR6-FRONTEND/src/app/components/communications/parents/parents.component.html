@@ -1,0 +1,27 @@
+<div class="container">
+
+  <h3 class="{{titleClass}}">
+    {{title}}
+  </h3>
+  <div class="field">
+    <div class="control">
+      <button class="button is-primary" (click)="onClickCount()">Run
+        &nbsp;&nbsp;<span class="tag is-rounded">{{count}}</span>
+      </button>
+
+      <button class="button is-info is-outlined" (click)="c1.count = 100; c2.count = 0;">Template
+        Ref#1</button>
+      <button class="button is-success is-outlined" (click)="c2.count = 200;">Template Ref#2</button>
+
+      <button class="button is-danger is-outlined" (click)="onViewChild()">View Child</button>
+    </div>
+  </div>
+
+  <app-child-one #c1 (onReset)="onChileOneReset($event)" [count_child_1]="count">
+    <!-- app child one content into here -->
+  </app-child-one>
+
+  <app-child-two #c2 [count]="count" (onReset)="onChildTwoReset($event)">
+    <!-- app child two content into here -->
+  </app-child-two>
+</div>
