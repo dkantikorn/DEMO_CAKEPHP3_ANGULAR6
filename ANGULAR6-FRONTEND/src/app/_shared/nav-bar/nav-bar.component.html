@@ -5,7 +5,8 @@
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
       </a>
 
-      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -34,6 +35,24 @@
           CRUD Users
         </a>
 
+
+
+
+        <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Learn RX/JS
+            </a>
+  
+            <div class="navbar-dropdown">
+              
+              <a class="navbar-item" [routerLink]="['/async-pipe']" routerLinkActive="is-active">
+                Angular async pipe
+              </a>
+            </div>
+          </div>
+
+
+        
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
             More
@@ -50,8 +69,11 @@
               Contact
             </a>
             <hr class="navbar-divider">
-            <a class="navbar-item" [routerLink]="['/communication']" routerLinkActive="is-active" >
+            <a class="navbar-item" [routerLink]="['/communication']" routerLinkActive="is-active">
               Angular Communication
+            </a>
+            <a class="navbar-item" [routerLink]="['/async-pipe']" routerLinkActive="is-active">
+              Angular async pipe
             </a>
           </div>
         </div>

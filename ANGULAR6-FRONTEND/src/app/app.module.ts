@@ -27,6 +27,7 @@ import { NgIfTemplateComponent } from './tutorials/ng-if-template/ng-if-template
 import { ParentsComponent } from './components/communications/parents/parents.component';
 import { ChildOneComponent } from './components/communications/child-one/child-one.component';
 import { ChildTwoComponent } from './components/communications/child-two/child-two.component';
+import { AsyncPipeComponent } from './tutorials/rxjs/async-pipe/async-pipe.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ChildTwoComponent } from './components/communications/child-two/child-t
     NgIfTemplateComponent,
     ParentsComponent,
     ChildOneComponent,
-    ChildTwoComponent
+    ChildTwoComponent,
+    AsyncPipeComponent
   ],
   imports: [
     BrowserModule,

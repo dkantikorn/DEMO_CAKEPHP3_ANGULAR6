@@ -1,3 +1,4 @@
+import { AsyncPipeComponent } from './tutorials/rxjs/async-pipe/async-pipe.component';
 import { ParentsComponent } from './components/communications/parents/parents.component';
 import { AuthGuardGuard } from './_guard/auth-guard.guard';
 import { NgModule } from '@angular/core';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'tutorial/template', component: NgIfTemplateComponent },
   { path: 'communication', component: ParentsComponent },
+  { path: 'async-pipe', component: AsyncPipeComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

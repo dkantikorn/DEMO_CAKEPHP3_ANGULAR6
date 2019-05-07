@@ -1,0 +1,47 @@
+<br>
+<div class="container">
+  <h3 class="title is-4 notification is-primary">Time: {{ time$ | async | date:'mediumTime' }}</h3>
+</div>
+
+<br>
+<div class="container" *ngIf="time$ | async as time">
+  <h3 class="title is-4 notification is-info">Time: {{ time | date:'mediumTime' }}</h3>
+</div>
+
+<br>
+<div class="container" *ngIf="cities$ | async as cities">
+
+  <div class="notification is-warning">
+    <button class="delete"></button>
+    <h3 class="is-1">Async with ngFor</h3>
+  </div>
+
+  <ul>
+    <li *ngFor="let city of cities">
+      Name: {{ city.name }},
+      Population: {{ city.population }},
+      Elevation: {{ city.elevation }}</li>
+  </ul>
+</div>
+
+
+<br>
+<div class="container">
+  <div class="notification is-link">
+    <button class="delete"></button>
+    <h3 class="is-3">Async with ngIf</h3>
+  </div>
+
+  <span *ngIf="(word$ | async)?.length > 9; else shortWord">
+    Long word: {{ word$.value }}
+  </span>
+
+  <ng-template #shortWord>
+    Short word: {{ word$.value }}
+  </ng-template>
+</div>
+
+<!-- 
+  Async pipe can be passing the value to the property binding
+  <app-child [time]="time$ | async"></app-child> 
+-->
