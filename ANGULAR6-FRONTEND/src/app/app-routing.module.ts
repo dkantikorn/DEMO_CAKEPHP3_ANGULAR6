@@ -1,3 +1,4 @@
+import { DemoAnimationsComponent } from './tutorials/animations/demo-animations/demo-animations.component';
 import { AsyncPipeComponent } from './tutorials/rxjs/async-pipe/async-pipe.component';
 import { ParentsComponent } from './components/communications/parents/parents.component';
 import { AuthGuardGuard } from './_guard/auth-guard.guard';
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'tutorial/template', component: NgIfTemplateComponent },
   { path: 'communication', component: ParentsComponent },
   { path: 'async-pipe', component: AsyncPipeComponent },
+  { path: 'animate-one', component: DemoAnimationsComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

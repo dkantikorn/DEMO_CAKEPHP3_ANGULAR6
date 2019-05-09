@@ -28,6 +28,7 @@ import { ParentsComponent } from './components/communications/parents/parents.co
 import { ChildOneComponent } from './components/communications/child-one/child-one.component';
 import { ChildTwoComponent } from './components/communications/child-two/child-two.component';
 import { AsyncPipeComponent } from './tutorials/rxjs/async-pipe/async-pipe.component';
+import { DemoAnimationsComponent } from './tutorials/animations/demo-animations/demo-animations.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AsyncPipeComponent } from './tutorials/rxjs/async-pipe/async-pipe.compo
     ParentsComponent,
     ChildOneComponent,
     ChildTwoComponent,
-    AsyncPipeComponent
+    AsyncPipeComponent,
+    DemoAnimationsComponent
   ],
   imports: [
     BrowserModule,
